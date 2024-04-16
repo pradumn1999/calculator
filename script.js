@@ -2,6 +2,7 @@ let input = document.getElementById('inputBox');
 let button = document.querySelectorAll('button');
 
 let string = "";
+let lastInputWasOperator = false;
  let arr = Array.from(button);
   arr.forEach(button =>{
      button.addEventListener('click', (e) =>{
@@ -18,6 +19,10 @@ let string = "";
             input.value = string;
         }
         else{
+            if(lastInputWasOperator && isNaN(parseInt(e.target.innerHTML))){
+                return;
+            }
+            lastInputWasOperator = isNaN(parseInt(e.target.innerHTML))
         string += e.target.innerHTML;
         input.value = string;
         }
